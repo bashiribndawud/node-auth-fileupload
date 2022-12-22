@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes, Model } = require('sequelize');
 const { createDB } = require("../config/db");
+const orderModel = require('./orderModels')
 
 const User = createDB.define("users", {
     id: {
@@ -17,4 +18,8 @@ const User = createDB.define("users", {
     }
 })
 
+User.hasMany(orderModel, {foreignKey: "id" });
+orderModel.belongsTo(User, { foreignKey: "buyerId" });
+
 module.exports = User;
+
