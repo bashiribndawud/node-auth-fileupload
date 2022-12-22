@@ -1,9 +1,9 @@
 const {Sequelize} = require('sequelize');
 
-const createDB = new Sequelize('mydb', 'user', 'pass', {
-    dialect: 'sqlite',
-    host: './config/db.sqlite'
-})
+const createDB = new Sequelize("mydb", "root", "", {
+  dialect: "mysql",
+  host: "localhost",
+});
 
 const connectDB = () => {
     createDB.sync().then(() => {
