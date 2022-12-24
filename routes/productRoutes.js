@@ -51,12 +51,12 @@ router.get("/get/all", isAuthenticated, async (req, res) => {
   try {
     const allProducts = await Product.findAll();
     console.log('Product', allProducts)
-    if (allProducts) {
-      return res.status(200).json({
-        status: "Ok",
-        allProducts,
+    if (!allProducts) {
+      return res.status(404).json({
+       message: "Products not found"
       });
     }
+    return res.status(200).json({allProducts})
   } catch (error) {
     return res.status(500).json({ err: error.message });
   }
